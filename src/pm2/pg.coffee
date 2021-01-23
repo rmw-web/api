@@ -31,16 +31,33 @@ initdb = =>
       s.stderr.pipe process.stderr
     return true
 
-pg_hba_md5 = =>
-  fp = join(DIR_PG,"pg_hba.conf")
-  txt = await readFile(fp,"utf8")
-  r = []
-  for i in txt.split("\n")
-    if not i.startsWith "#"
-      i = i.replace " trust", " md5"
-    r.push(i)
-  await writeFile fp, r.join('\n')
+_conf = (filename, modify)=>
+  =>
+    fp = join(DIR_PG,filename)
+    txt = await readFile(fp,"utf8")
+    r = []
+    for i in txt.split("\n")
+      r.push modify(i)
+    await writeFile fp, r.join('\n')
 
+
+postgresql_conf = _conf "postgresql.conf", (i)=>
+  for prefix in ["track_counts","autovacuum"]
+    if i.startsWith "##{prefix} ="
+      i = i[1..]
+      break
+  i
+
+pg_hba_md5 = _conf "pg_hba.conf", (i)=>
+  if not i.startsWith "#"
+    i = i.replace " trust", " md5"
+  i
+
+patch = =>
+  Promise.all [
+    pg_hba_md5()
+    postgresql_conf()
+  ]
 
 export default =>
   is_new = await initdb()
@@ -91,7 +108,7 @@ export default =>
 
     await pg.$destroy()
     if is_new
-      await pg_hba_md5()
+      await patch()
       await pm2.restart pgexe
       is_new = false
     else
