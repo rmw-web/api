@@ -1,0 +1,12 @@
+import fs from "fs"
+
+import path from "path"
+
+export default async function* walkdir(dir) {
+  for await (const d of await fs.promises.opendir(dir)) {
+    const entry = path.join(dir, d.name);
+    if (d.isDirectory()) yield* walkdir(entry);
+    else if (d.isFile()) yield entry;
+  }
+}
+

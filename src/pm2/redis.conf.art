@@ -1,0 +1,11 @@
+port {{port}}
+dir {{dir}}
+requirepass {{password}}
+pidfile {{dir}}/redis.pid
+dbfilename srv.rdb
+save 999 1
+save 333 100
+save 60 10000
+appendonly yes
+appendfilename srv.aof
+appendfsync everysec

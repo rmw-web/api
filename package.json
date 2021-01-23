@@ -1,0 +1,49 @@
+{
+  "name": "@rmw/api",
+  "version": "0.0.1",
+  "repository": "https://github.com/rmw-lib/web",
+  "author": "i@rmw.link",
+  "license": "MulanPSL-2.0",
+  "exports": {
+    ".": "./lib/index.js",
+    "./*": "./lib/*"
+  },
+  "files": [
+    "/lib"
+  ],
+  "dependencies": {
+    "@rmw/console": "^0.0.13",
+    "@rmw/dir": "^0.0.2",
+    "@rmw/pg": "^0.0.18",
+    "@rmw/redis": "^0.0.22",
+    "@rmw/thisfile": "^0.0.2",
+    "art-template": "^4.13.2",
+    "async-exit-hook": "^2.0.1",
+    "await-sleep": "^0.0.1",
+    "fs-extra": "^9.1.0",
+    "js-yaml": "^4.0.0",
+    "koa": "^2.13.1",
+    "lodash": "^4.17.20",
+    "pm2": "^4.5.1",
+    "pouchdb-adapter-leveldb": "^7.2.2",
+    "ps-node": "^0.1.6",
+    "split_n": "^1.0.5",
+    "uWebSockets.js": "uNetworking/uWebSockets.js#v18.14.0",
+    "urlsafe-base64": "^1.0.0"
+  },
+  "devDependencies": {
+    "@rmw/md-include": "^0.4.5",
+    "chalk": "^4.1.0",
+    "coffeescript": "^2.5.1",
+    "colortape": "^0.1.2",
+    "klaw-sync": "^6.0.0",
+    "nodemon": "^2.0.7",
+    "source-map-support": "^0.5.19",
+    "tape": "^5.1.1",
+    "tape-catch": "^1.0.6"
+  },
+  "scripts": {
+    "prepare": ".direnv/bin/coffee ./src/sh/web.ws.coffee && rm -rf lib && rsync -av --include='*/' --include='*.js' --include='*.mjs' --exclude=* src/ lib/ && npx coffee --compile --output lib src/"
+  },
+  "type": "module"
+}

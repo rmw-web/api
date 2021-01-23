@@ -1,0 +1,10 @@
+/os.*/
+/os
+*.rdb
+*.lock
+*.log
+*.out
+*.pid
+/lib/
+node_modules/
+package-lock.json
