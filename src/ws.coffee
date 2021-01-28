@@ -36,7 +36,7 @@ export default =>
               try
                 args = if args then JSON.parse "[#{args}]" else []
                 mod = await import("./ws/"+mod)
-                r = await mod[func].apply(func, args)
+                r = await mod[func].apply(ws, args)
                 if r != undefined
                   reply += " "+JSON.stringify(r)
               catch err
