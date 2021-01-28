@@ -29,7 +29,10 @@ dump = (p)=>
     param = get_parameter_names(v)
     func_name = "_"+camelCase(p)
     dev.push "#{k} : (#{param}) -> console.log await #{func_name}.#{k}.apply(#{func_name}, arguments)"
-    ol.push "export #{k} = WS.#{k}"
+    name = k
+    if k != "default"
+      name += " ="
+    ol.push "export #{name} WS.#{k}"
 
   txt = """\
 import Ws from '@/coffee/ws'
