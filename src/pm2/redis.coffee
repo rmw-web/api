@@ -12,7 +12,7 @@ import DIR from "@rmw/dir"
 
 
 redis = "redis"
-ROOT = join DIR.rmw,redis
+ROOT = join DIR.rmw, redis
 name = "rmw-"+redis
 redis_conf = redis+".conf"
 REDIS_CONFIG = join(ROOT,redis_conf)
@@ -20,6 +20,7 @@ script = join DIR_OS, redis+"-server.exe"
 
 do =>
   if not fs.existsSync(REDIS_CONFIG)
+    fs.mkdirSync(ROOT, { recursive: true })
     fp = join DIR_SRC,"pm2",redis_conf+".art"
     await writeFile REDIS_CONFIG, Art(fp, {
       dir:ROOT
