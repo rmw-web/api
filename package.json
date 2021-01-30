@@ -13,7 +13,7 @@
   ],
   "dependencies": {
     "@rmw/console": "^0.0.13",
-    "@rmw/dir": "^0.0.3",
+    "@rmw/dir": "^0.0.4",
     "@rmw/pg": "^0.0.18",
     "@rmw/redis": "^0.0.22",
     "@rmw/thisfile": "^0.0.2",

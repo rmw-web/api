@@ -1,3 +1,6 @@
 import {thisdir} from "@rmw/thisfile"
-import {dirname} from 'path'
-export default dirname dirname dirname thisdir(`import.meta`)
+import {dirname,join} from 'path'
+
+export default ROOT = dirname dirname dirname thisdir(`import.meta`)
+if not process.env.rmw
+  process.env.rmw = join(dirname(ROOT),"data")

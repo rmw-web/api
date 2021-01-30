@@ -1,4 +1,5 @@
 #!/usr/bin/env coffee
+import DIR_ROOT from '../const/dir/root'
 import EXE from './exe'
 import {writeFile, readFile} from 'fs/promises'
 import {join} from 'path'
@@ -7,7 +8,6 @@ import fs from 'fs'
 import Pg from '@rmw/pg/pg'
 import sleep from 'await-sleep'
 import {postgres,postgres_bin,connection,DIR_PG} from './pg_ctl'
-import DIR_ROOT from '../const/dir/root'
 
 initdb = =>
   if not fs.existsSync DIR_PG

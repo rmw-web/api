@@ -1,4 +1,5 @@
 #!/usr/bin/env coffee
+import DIR_ROOT from '../const/dir/root'
 import {writeFile, readFile} from 'fs/promises'
 import fs from 'fs'
 # import onExit from 'async-exit-hook'
@@ -8,7 +9,6 @@ import killpid from "./killpid"
 import pm2 from './pm2'
 import DIR_OS from '../const/dir/os'
 import DIR_SRC from '../const/dir/src'
-import DIR_ROOT from '../const/dir/root'
 import DIR from "@rmw/dir"
 
 DIR_RMW = DIR.rmw
