@@ -14,8 +14,8 @@
   "dependencies": {
     "@rmw/console": "^0.0.14",
     "@rmw/dir": "^0.0.4",
-    "@rmw/pg": "^0.0.18",
-    "@rmw/redis": "^0.0.22",
+    "@rmw/pg": "^0.0.19",
+    "@rmw/redis": "^0.0.23",
     "@rmw/thisfile": "^0.0.2",
     "art-template": "^4.13.2",
     "async-exit-hook": "^2.0.1",
