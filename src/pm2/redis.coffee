@@ -1,5 +1,6 @@
 #!/usr/bin/env coffee
-import DIR_ROOT from '../const/dir/root'
+import DIR_OS from '../const/dir/os'
+import DIR_SRC from '../const/dir/src'
 import {writeFile, readFile} from 'fs/promises'
 import fs from 'fs'
 # import onExit from 'async-exit-hook'
@@ -7,35 +8,33 @@ import {join} from 'path'
 import Art from 'art-template'
 import killpid from "./killpid"
 import pm2 from './pm2'
-import DIR_OS from '../const/dir/os'
-import DIR_SRC from '../const/dir/src'
 import DIR from "@rmw/dir"
 
-DIR_RMW = DIR.rmw
 
 redis = "redis"
+ROOT = join DIR.rmw,redis
 name = "rmw-"+redis
 redis_conf = redis+".conf"
-REDIS_CONFIG = join(DIR_RMW,redis_conf)
+REDIS_CONFIG = join(ROOT,redis_conf)
 script = join DIR_OS, redis+"-server.exe"
 
 do =>
   if not fs.existsSync(REDIS_CONFIG)
     fp = join DIR_SRC,"pm2",redis_conf+".art"
     await writeFile REDIS_CONFIG, Art(fp, {
-      dir:DIR_RMW
+      dir:ROOT
       ...(await import('@rmw/redis/config')).default
     })
 
 export default =>
   await killpid(
-    join(DIR_RMW,redis+".pid")
+    join(ROOT,redis+".pid")
     script
   )
   pm2.start {
     name
     script
-    # pid_file: join(DIR_RMW,redis+".pid")
+    # pid_file: join(ROOT,redis+".pid")
     args:REDIS_CONFIG
   }
 
