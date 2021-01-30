@@ -13,7 +13,7 @@
   ],
   "dependencies": {
     "@rmw/console": "^0.0.13",
-    "@rmw/dir": "^0.0.2",
+    "@rmw/dir": "^0.0.3",
     "@rmw/pg": "^0.0.18",
     "@rmw/redis": "^0.0.22",
     "@rmw/thisfile": "^0.0.2",
@@ -24,7 +24,7 @@
     "js-yaml": "^4.0.0",
     "koa": "^2.13.1",
     "lodash": "^4.17.20",
-    "pm2": "^4.5.1",
+    "pm2": "^4.5.2",
     "pouchdb-adapter-leveldb": "^7.2.2",
     "ps-node": "^0.1.6",
     "split_n": "^1.0.5",
