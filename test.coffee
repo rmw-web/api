@@ -10,18 +10,19 @@ stunPing = (hostIp)=>
   new Promise (resolve)=>
     setTimeout(
       resolve
-      9000
+      60000
     )
-    while 1
+    n = 0
+    while ++n < 10
       try
         r = await request(hostIp)
       catch err
-        resolve()
         continue
-      address = r.getAddress()
-      if address
-        resolve [hostIp, address]
-        return
+      r = r.getAddress()
+      if r
+        console.log hostIp, r
+        resolve hostIp
+    resolve()
 
 do =>
   todo = []
@@ -32,8 +33,6 @@ do =>
       exist.add hostIp
       todo.push stunPing(hostIp)
 
-  for i from await Promise.all(todo)
-    if i
-      console.log JSON.stringify(i)
+  await Promise.all(todo)
 
   process.exit()
