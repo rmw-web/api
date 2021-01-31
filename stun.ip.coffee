@@ -1,4 +1,6 @@
 export default [
+  ["stun.wirlab.net",3478]
+  ["stun.xten.com",3478]
   ["iphone-stun.strato-iphone.de",3478]
   ["stun-eu.3cx.com",3478]
   ["stun-us.3cx.com",3478]

@@ -10,17 +10,18 @@ stunPing = (hostIp)=>
   new Promise (resolve)=>
     setTimeout(
       resolve
-      3000
+      9000
     )
-    try
-      r = await request(hostIp)
-    catch err
-      resolve()
-      return
-    address = r.getAddress()
-    if address
-      resolve [hostIp, address]
-      return
+    while 1
+      try
+        r = await request(hostIp)
+      catch err
+        resolve()
+        continue
+      address = r.getAddress()
+      if address
+        resolve [hostIp, address]
+        return
 
 do =>
   todo = []
