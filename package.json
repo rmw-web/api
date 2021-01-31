@@ -28,6 +28,7 @@
     "pouchdb-adapter-leveldb": "^7.2.2",
     "ps-node": "^0.1.6",
     "split_n": "^1.0.5",
+    "stun": "^2.1.0",
     "uWebSockets.js": "uNetworking/uWebSockets.js#v18.14.0",
     "urlsafe-base64": "^1.0.0"
   },
