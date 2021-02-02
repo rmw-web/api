@@ -12,7 +12,9 @@ stunPing = (hostIp)=>
     socket.on('listening', =>
       resolve socket.address()
     )
-  console.log address, hostIp
+  socket.on('close',=>
+    console.log "end", address
+  )
   try
     r = await stun.request(
       hostIp
@@ -25,45 +27,7 @@ stunPing = (hostIp)=>
     console.error hostIp,err
     return
   addr = r.getAddress()
-  console.log addr, "\n"
-  return addr
-  # console.log socket
-  # new Promise (resolve)=>
-  #   n = 0
-  #   while ++n < 10
-  #     try
-  #     catch err
-  #       console.log err
-  #       continue
-  #     break
-  #   console.log(r)
-  #   # addr = r.getAddress()
-  #   # resolve(addr)
-  #   return
-
-  # console.log server
-  # new Promise (resolve)=>
-  #   setTimeout(
-  #     resolve
-  #     60000
-  #   )
-  #   n = 0
-  #   while ++n < 10
-  #     try
-  #       r = await stun.request(
-  #         hostIp
-  #         {server}
-  #       )
-  #     catch err
-  #       console.log err
-  #       continue
-  #     console.dir r
-  #     r = r.getAddress()
-  #     if r
-  #       console.log hostIp, r
-  #       resolve hostIp
-  #       return
-  #   resolve()
+  return [socket, addr]
 
 do =>
   exist = new Set()
@@ -71,7 +35,11 @@ do =>
     hostIp = host+":"+port
     if not exist.has host
       exist.add host
-      await stunPing(hostIp)
+      r = await stunPing(hostIp)
+      if r
+        [socket,addr] = r
+        # socket.close()
+        console.log addr
 
 
   process.exit()
