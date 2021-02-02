@@ -25,7 +25,7 @@ stunPing = (hostIp)=>
     console.error hostIp,err
     return
   addr = r.getAddress()
-  console.log "server listening #{address.address}:#{address.port}", addr
+  console.log addr, "\n"
   return addr
   # console.log socket
   # new Promise (resolve)=>
