@@ -5,15 +5,6 @@ DIR=$( dirname $(realpath "$0") )
 cd $DIR
 . .direnv/bin/pid.sh
 
-if [ ! -e "os" ] ;then
-os=$(node -e "console.log(process.platform.toLowerCase())")
-giturl=git@gitee.com:rmw-link/$(basename $DIR).$os.git
-set -x
-git clone $giturl os.$os --depth=1
-ln -s os.$os os
-set +x
-fi
-
 if [ ! -n "$1" ] ;then
 exe=src/index.coffee
 else
